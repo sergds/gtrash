@@ -1,6 +1,12 @@
 from googletrans import Translator
 from random import choice, randint
+import locale
 import json
+
+if locale.getdefaultlocale()[0] == 'ru_RU':
+	finallang = 'ru'
+else:
+	finallang = 'en'
 
 def swap_string(str):
 	return ''.join([ str[x:x+2][::-1] for x in range(0, len(str), 2) ])
@@ -17,8 +23,6 @@ def trashgenerate(text, ntimes):
 		print("Reached google translate daily limit on one of proxies.")
 		print("Reinitializing translator.")
 		translator = Translator(user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36", proxies={'http': '173.82.17.186:5836', 'http': '173.192.128.238:9999', 'http': '118.69.50.154:80', 'http': '150.129.54.111:6666', 'http': '24.222.59.126:3128'})
-
-
 	i = i + 1
 	while i != ntimes:
 		desiredlang = choice(langs)
@@ -39,7 +43,7 @@ def trashgenerate(text, ntimes):
 			texttmp.text = swap_string(texttmp.text)
 			print("Swapped: " + texttmp.text)
 		i = i + 1
-	texttmp = translator.translate(texttmp.text, dest='ru')
+	texttmp = translator.translate(texttmp.text, dest=finallang)
 	return texttmp.text
 
 def maketext(wc):
