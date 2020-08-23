@@ -18,7 +18,7 @@ def trashgenerate(text, ntimes):
 	desiredlang = choice(langs)
 	try:
 		texttmp = translator.translate(text, dest=desiredlang)
-		print("trashgenerate(): Translated texttmp to " + texttmp.dest)
+		print("trashgenerate(): Translated 0/" + str(ntimes - 1) + " texttmp to " + texttmp.dest)
 	except json.decoder.JSONDecodeError:
 		print("Reached google translate daily limit on one of proxies.")
 		print("Reinitializing translator.")
@@ -36,7 +36,7 @@ def trashgenerate(text, ntimes):
 			print("Reinitializing translator.")
 			translator = Translator(user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36", proxies={'http': '173.82.17.186:5836', 'http': '173.192.128.238:9999', 'http': '118.69.50.154:80', 'http': '150.129.54.111:6666', 'http': '24.222.59.126:3128'})
 			continue
-		print("trashgenerate(): Translated texttmp to " + texttmp.dest)
+		print("trashgenerate(): Translated " + str(i) + "/" + str(ntimes - 1) + " texttmp to " + texttmp.dest)
 		if texttmp.dest == 'ja' and randint(1, 2) == 1:
 			print("trashgenerate(): Found japanese text, swapping chars ;)")
 			print("Original: " + texttmp.text)
