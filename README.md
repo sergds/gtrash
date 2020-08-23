@@ -1,6 +1,6 @@
 # GTrash
 
-![GT-logo](googtr.png)
+![GT-logo](logo/googtr.png)
 
 ### Generates Random text and translates it to a lot of languages (Basically a sequel to google FUNirator)
 
